@@ -1,6 +1,6 @@
 # A2
  Nhóm 7 - Chủ đề 18
-Chủ đề 18: Quản lý danh sách Dự án phần mềm
+## Quản lý danh sách Dự án phần mềm
 Xây dựng lớp quản lý đối tượng Dự án phần mềm với các thuộc tính: mã dự án, tên dự
 án, tên khách hàng, ngày bắt đầu, ngày kết thúc dự kiến, ngân sách, tỷ lệ hoàn thành (%)
 và các phương thức cần thiết. Sau đó thực hiện quản lý danh sách n (0 < n < 200) dự án
