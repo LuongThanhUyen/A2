@@ -3,90 +3,48 @@
 #include <iomanip>
 using namespace std;
 
-class DuAn {
+class Duan {
 private:
-    string maDuAn;
-    string tenDuAn;
-    string tenKhachHang;
-    string ngayBatDau;
-    string ngayKetThucDuKien;
-    double nganSach;
-    double tyLeHoanThanh;
+    string maduan;
+    string tenduan;
+    string tenkhachhang;
+    string ngaybatdau;
+    string ngayketthucdukien;
+    double ngansach;
+    double tylehoanthanh;
 
 public:
-    // Ham nhap thong tin du an
-    void nhap() {
-        cout << "Nhap ma du an: ";
-        getline(cin, maDuAn);
-
-        cout << "Nhap ten du an: ";
-        getline(cin, tenDuAn);
-
-        cout << "Nhap ten khach hang: ";
-        getline(cin, tenKhachHang);
-
-        cout << "Nhap ngay bat dau: ";
-        getline(cin, ngayBatDau);
-
-        cout << "Nhap ngay ket thuc du kien: ";
-        getline(cin, ngayKetThucDuKien);
-
-        cout << "Nhap ngan sach: ";
-        cin >> nganSach;
-
-        cout << "Nhap ty le hoan thanh (%): ";
-        cin >> tyLeHoanThanh;
-
-        cin.ignore();
-    }
-
-    // Ham xuat thong tin du an
-    void xuat() {
-        cout << left
-             << setw(12) << maDuAn
-             << setw(25) << tenDuAn
-             << setw(20) << tenKhachHang
-             << setw(15) << ngayBatDau
-             << setw(20) << ngayKetThucDuKien
-             << setw(15) << nganSach
-             << setw(15) << tyLeHoanThanh
-             << endl;
-    }
-
-    // Ham lay ma du an
-    string getMaDuAn() {
-        return maDuAn;
-    }
-
-    // Ham lay ten du an
-    string getTenDuAn() {
-        return tenDuAn;
-    }
-
-    // Ham lay ngan sach
-    double getNganSach() {
-        return nganSach;
-    }
+    void nhap();
+	void xuat(); 
 };
 
+
 int main() {
-    DuAn da;
+    Duan da;
 
     da.nhap();
-
-    cout << "\nTHONG TIN DU AN\n";
-
-    cout << left
-         << setw(12) << "Ma DA"
-         << setw(25) << "Ten du an"
-         << setw(20) << "Khach hang"
-         << setw(15) << "Ngay BD"
-         << setw(20) << "Ngay KT"
-         << setw(15) << "Ngan sach"
-         << setw(15) << "Hoan thanh"
-         << endl;
 
     da.xuat();
 
     return 0;
+}
+
+void Duan::nhap() {
+    cout<<"Nhap ma du an: ";	cin>>maduan;	cin.ignore();
+    cout<<"Nhap ten du an: ";	getline(cin,tenduan);
+    cout<<"Nhap ten khach hang : ";		getline(cin, tenkhachhang);
+    cout<<"Nhap ngay bat dau : ";	cin>>ngaybatdau;
+    cout<<"Nhap ngay ket thuc : ";	cin>>ngayketthucdukien;
+    cout<<"Nhap ngan sach : ";		cin>>ngansach;
+    cout<<"Nhap ty le hoan thanh : ";	cin>>tylehoanthanh;
+}
+void Duan::xuat() {
+	cout << "\nTHONG TIN DU AN\n";
+    cout<<"Ma du an : "<<maduan <<endl;
+    cout<< "Ten du an : "<<tenduan <<endl;
+    cout<<"Ten khach hang : "<<tenkhachhang <<endl;
+    cout<<"Ngay bat dau : "<<ngaybatdau <<endl;
+    cout<< "Ngay ket thuc : " << ngayketthucdukien <<endl;
+    cout<<"Ngan sach : "<<ngansach <<".000"<<endl;
+    cout<<"Ty le hoan thanh : "<<tylehoanthanh<<"%"<<endl;
 }
