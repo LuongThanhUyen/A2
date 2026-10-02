@@ -19,8 +19,8 @@ void Duan::xuat() {
     cout<<"Ma du an : "<<maduan <<endl;
     cout << "Ten du an : "<<tenduan <<endl;
     cout<<"Ten khach hang : "<<tenkhach <<endl;
-    cout<<"Ngay bat dau : "<<ngaybatdau <<"/10"<<endl;
-    cout<< "Ngay ket thuc : " << ngayketthuc <<"/10"<<endl;
+    cout<<"Ngay bat dau : "<<ngaybatdau <<endl;
+    cout<< "Ngay ket thuc : " << ngayketthuc <<endl;
     cout<<"Ngan sach : "<<ngan_sach <<".000"<<endl;
     cout<<"Ty le hoan thanh : "<<tylehoanthanh<<"%"<<endl;
 }
