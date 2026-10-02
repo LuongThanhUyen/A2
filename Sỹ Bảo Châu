@@ -5,7 +5,7 @@ void Duan::nhap() {
     cout<<"Nhap ten du an: ";
     getline(cin,tenduan);
     cout<<"Nhap ten khach hang : ";
-    getline(cin, tenkhach);
+    getline(cin, tenkhachhang);
     cout<<"Nhap ngay bat dau : ";
     cin >>ngaybatdau;
     cout<<"Nhap ngay ket thuc : ";
