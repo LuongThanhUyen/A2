@@ -1,0 +1,66 @@
+void sapXepNganSachGiamDan (DuAn ds[], int n) {
+  if(n<=0){
+    cout << "Danh sach rong! Khong the sap xep";
+    return;
+  }
+  for (int i=0; i<n-1; i++) {
+    for (int j=i+1; j<n; j++) {
+      if(ds[i].getNganSach() < ds[j].getNganSach()) {
+        DuAn temp = ds[i];
+        ds[i] = ds[j];
+        ds[j] = temp;
+      }
+    }
+  }
+  cout << "Danh sach da sap xep theo ngan sach giam dan:\n";
+  for (int i=0; i<n; i++) {
+    ds[i].xuat();
+  }
+}
+
+void timKiemTheoMa (DuAn ds[], int n) {
+  if(n<=0) {
+    cout << "Danh sach rong! Khong the tim kiem ma du an";
+    return;
+  }
+  string maCanTim;
+  cout << "Nhap ma du an can tim: ";
+  getline (cin >> ws, maCanTim);
+  bool timThay = false;
+  string maLower = toLowerString(maCanTim);
+  for (int i=0; i<n; i++) {
+    if(toLowerString(ds[i].getMaDuAn()) == maLower) {
+      cout << "THONG TIN DU AN TIM THAY THEO MA\n";
+      ds[i].xuat();
+      timThay = true;
+      break;
+    }
+  }
+  if (!timThay) {
+    cout << "Khong tim thay du an co ma: " << maCanTim << endl;
+  }
+}
+
+void timKiemTheoTen (DuAn ds[], int n) {
+  if(n<=0) {
+    cout << "Danh sach rong! Khong the tim kiem ten du an";
+    return;
+  }
+  string tenCanTim;
+  cout << "Nhap ten du an can tim: ";
+  getline (cin >> ws, tenCanTim);
+  bool timThay = false;
+  string tenLower = toLowerString(tenCanTim);
+  for (int i=0; i<n; i++) {
+    if(toLowerString(ds[i].getTenDuAn()).find(tenLower) != string::npos) {
+      if (!timThay) {
+        cout << "THONG TIN DU AN TIM THAY THEO TEN: ";
+        timThay = true;
+      }
+      ds[i].xuat();
+    }
+  }
+  if (!timThay) {
+    cout << "Khong tim thay du an co ten: " << tenCanTim << endl;
+  }
+}
