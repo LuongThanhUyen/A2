@@ -8,8 +8,8 @@ void Duan::nhap() {
     getline(cin, tenkhachhang);
     cout<<"Nhap ngay bat dau : ";
     cin >>ngaybatdau;
-    cout<<"Nhap ngay ket thuc : ";
-    cin >>ngayketthuc;
+    cout<<"Nhap ngay ket thuc du kien : ";
+    cin >>ngayketthucdukien;
     cout<<"Nhap ngan sach : ";
     cin >> ngansach;
     cout<<"Nhap ty le hoan thanh : ";
@@ -20,7 +20,7 @@ void Duan::xuat() {
     cout << "Ten du an : "<<tenduan <<endl;
     cout<<"Ten khach hang : "<<tenkhachhang <<endl;
     cout<<"Ngay bat dau : "<<ngaybatdau <<endl;
-    cout<< "Ngay ket thuc : " << ngayketthuc <<endl;
+    cout<< "Ngay ket thuc du kien : " << ngayketthucdukien <<endl;
     cout<<"Ngan sach : "<<ngansach <<".000"<<endl;
     cout<<"Ty le hoan thanh : "<<tylehoanthanh<<"%"<<endl;
 }
