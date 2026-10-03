@@ -27,9 +27,9 @@ void timKiemTheoMa (DuAn ds[], int n) {
   cout << "Nhap ma du an can tim: ";
   getline (cin >> ws, maCanTim);
   bool timThay = false;
-  string maLower = toLowerString(maCanTim);
+  string maThuong = chuyenThuong(maCanTim);
   for (int i=0; i<n; i++) {
-    if(toLowerString(ds[i].getMaDuAn()) == maLower) {
+    if(chuyenThuong(ds[i].getMaDuAn()) == maThuong) {
       cout << "THONG TIN DU AN TIM THAY THEO MA\n";
       ds[i].xuat();
       timThay = true;
@@ -50,9 +50,9 @@ void timKiemTheoTen (DuAn ds[], int n) {
   cout << "Nhap ten du an can tim: ";
   getline (cin >> ws, tenCanTim);
   bool timThay = false;
-  string tenLower = toLowerString(tenCanTim);
+  string tenThuong = chuyenThuong(tenCanTim);
   for (int i=0; i<n; i++) {
-    if(toLowerString(ds[i].getTenDuAn()).find(tenLower) != string::npos) {
+    if(chuyenThuong(ds[i].getTenDuAn()).find(tenThuong) != string::npos) {
       if (!timThay) {
         cout << "THONG TIN DU AN TIM THAY THEO TEN: ";
         timThay = true;
