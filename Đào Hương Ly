@@ -18,6 +18,13 @@ void sapXepNganSachGiamDan (DuAn ds[], int n) {
   }
 }
 
+string chuyenThuong(string s) {
+    for (char &c : s) {
+        c = tolower((unsigned char)c);
+    }
+    return s;
+}
+
 void timKiemTheoMa (DuAn ds[], int n) {
   if(n<=0) {
     cout << "Danh sach rong! Khong the tim kiem ma du an";
