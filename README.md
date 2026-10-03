@@ -18,7 +18,7 @@ private:
     string tenduan;
     string tenkhachhang;
     string ngaybatdau;
-    string ngayketthucdukien;
+    string ngayketthuc;
     double ngansach;
     double tylehoanthanh;
 
@@ -35,7 +35,7 @@ void Duan::nhap() {
     cout << "Nhap ten du an: ";			getline(cin, tenduan);
 	cout << "Nhap ten khach hang: ";	getline(cin, tenkhachhang);
 	cout << "Nhap ngay bat dau: ";	cin >> ngaybatdau;
-    cout << "Nhap ngay ket thuc: ";	cin >> ngayketthucdukien;
+    cout << "Nhap ngay ket thuc: ";	cin >> ngayketthuc;
 	cout << "Nhap ngan sach: ";		cin >> ngansach;
     cout << "Nhap ty le hoan thanh: ";  cin >> tylehoanthanh;
 }
@@ -46,7 +46,7 @@ void Duan::xuat() {
     cout << "Ten du an: " << tenduan << endl;
     cout << "Ten khach hang: " << tenkhachhang << endl;
     cout << "Ngay bat dau: " << ngaybatdau << endl;
-    cout << "Ngay ket thuc: " << ngayketthucdukien << endl;
+    cout << "Ngay ket thuc: " << ngayketthuc << endl;
     cout << "Ngan sach: " << ngansach << endl;
     cout << "Ty le hoan thanh: " << tylehoanthanh << "%" << endl;
 }
