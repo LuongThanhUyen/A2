@@ -321,7 +321,12 @@ int main() {
             case 5:
                 timkiemtheoten(ds, n);
                 break;
-
+            case 6:
+                bosungduan(ds, n);
+                break;
+            case 7:
+                xoaduan(ds, n);
+                break;
             case 0:
                 cout << "Da thoat chuong trinh!\n";
                 break;
