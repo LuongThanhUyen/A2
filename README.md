@@ -145,6 +145,57 @@ void timkiemtheoten(Duan ds[], int n) {
     }
 }
 
+// Them du an vao vi tri k (tinh tu 0-n) 
+void bosungduan(duan ds[], int &n) {
+    if (n >= 200) {
+        cout << "Danh sach da day, khong the bo sung!\n";
+        return;
+    }
+    int k;
+    cout << "Nhap vi tri can bo sung (tu 0 den " << n << "): ";
+    cin >> k;
+    
+    if (k < 0 || k > n) {
+        cout << "Vi tri khong hop le!\n";
+        return;
+    }
+    
+    // Dich cac phan tu dung sau sang phai
+    for (int i = n; i > k; i--) {
+        ds[i] = ds[i - 1];
+    }
+    
+    cout << "Nhap thong tin du an moi:\n";
+    ds[k].nhap();
+    n++; // Tang so luong phan tu
+    cout << "\nBo sung thanh cong!";
+    indanhsach(ds, n);
+}
+
+// Xoa du an tai vi tri k ( vi tri tu 0-n) 
+void xoaduan(duan ds[], int &n) {
+    if (n <= 0) {
+        cout << "Danh sach rong, khong co gi de xoa!\n";
+        return;
+    }
+    int k;
+    cout << "Nhap vi tri can xoa (tu 0 den " << n - 1 << "): ";
+    cin >> k;
+    
+    if (k < 0 || k >= n) {
+        cout << "Vi tri khong hop le!\n";
+        return;
+    }
+    
+    // Dich cac phan tu dung sau sang trai
+    for (int i = k; i < n - 1; i++) {
+        ds[i] = ds[i - 1 + 1];
+    }
+    
+    n--; // Giam so luong phan tu
+    cout << "\nXoa thanh cong!";
+    indanhsach(ds, n);
+}
 int main() {
     Duan ds[100];
     int n;
