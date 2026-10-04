@@ -5,11 +5,11 @@
 
 
 
-
 #include <iostream>
 #include <string>
 #include <iomanip>
 #include <cctype>
+#include <limits>
 using namespace std;
 
 class Duan {
@@ -30,27 +30,51 @@ public:
     string getTenduan();
 };
 
+// Nhap Du An
 void Duan::nhap() {
-    cout << "Nhap ma du an: ";			cin >> maduan;	cin.ignore();
-    cout << "Nhap ten du an: ";			getline(cin, tenduan);
-	cout << "Nhap ten khach hang: ";	getline(cin, tenkhachhang);
-	cout << "Nhap ngay bat dau: ";	cin >> ngaybatdau;
-    cout << "Nhap ngay ket thuc: ";	cin >> ngayketthuc;
-	cout << "Nhap ngan sach: ";		cin >> ngansach;
-    cout << "Nhap ty le hoan thanh: ";  cin >> tylehoanthanh;
+    cout << "Nhap ma du an: ";
+    cin >> maduan;
+
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+    cout << "Nhap ten du an: ";
+    getline(cin, tenduan);
+
+    cout << "Nhap ten khach hang: ";
+    getline(cin, tenkhachhang);
+
+    cout << "Nhap ngay bat dau (dd/mm/yyyy): ";
+    cin >> ngaybatdau;
+
+    cout << "Nhap ngay ket thuc (dd/mm/yyyy): ";
+    cin >> ngayketthuc;
+
+    cout << "Nhap ngan sach: ";
+    cin >> ngansach;
+
+    cout << "Nhap ty le hoan thanh (%): ";
+    cin >> tylehoanthanh;
+
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
 }
 
+// Xuat Du An
 void Duan::xuat() {
-    cout << "\nTHONG TIN DU AN\n";
+    cout << "\n----------------------------------\n";
+    cout << "THONG TIN DU AN\n";
     cout << "Ma du an: " << maduan << endl;
     cout << "Ten du an: " << tenduan << endl;
     cout << "Ten khach hang: " << tenkhachhang << endl;
     cout << "Ngay bat dau: " << ngaybatdau << endl;
     cout << "Ngay ket thuc: " << ngayketthuc << endl;
-    cout << "Ngan sach: " << ngansach << endl;
-    cout << "Ty le hoan thanh: " << tylehoanthanh << "%" << endl;
+    cout << "Ngan sach: " << fixed << setprecision(0)
+         << ngansach << " VND" << endl;
+    cout << "Ty le hoan thanh: " << tylehoanthanh
+         << "%" << endl;
+    cout << "----------------------------------\n";
 }
 
+// Cac ham lay du lieu
 double Duan::getNgansach() {
     return ngansach;
 }
@@ -62,26 +86,65 @@ string Duan::getMaduan() {
 string Duan::getTenduan() {
     return tenduan;
 }
-// ================= CHUYEN CHU HOA/THUONG =================
 
+// Chuyen chu hoa thanh chu thuong
 string tolowerstring(string s) {
-    for (int i = 0; i < s.length(); i++) {
-        s[i] = tolower(s[i]);
+    for (int i = 0; i < (int)s.length(); i++) {
+        s[i] = (char)tolower((unsigned char)s[i]);
     }
     return s;
 }
 
-// ================= SAP XEP =================
+// Nhap danh sach
+void nhapDanhSach(Duan ds[], int &n) {
+    int soLuong;
 
-void sapxepngansachgiamdan(Duan ds[], int n) {
-    int i, j;
-    Duan temp;
-    if (n <= 0) {
-        cout << "Danh sach rong! Khong the sap xep";
+    cout << "Nhap so luong du an (1-100): ";
+
+    while (!(cin >> soLuong) || soLuong < 1 || soLuong > 100) {
+        cout << "So luong khong hop le. Nhap lai (1-100): ";
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    }
+
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+    n = soLuong;
+
+    for (int i = 0; i < n; i++) {
+        cout << "\n===== DU AN THU " << i + 1 << " =====\n";
+        ds[i].nhap();
+    }
+
+    cout << "\nDa nhap danh sach thanh cong!\n";
+}
+
+// Hien thi danh sach 
+void hienThi(Duan ds[], int n) {
+    if (n == 0) {
+        cout << "Danh sach rong!\n";
         return;
     }
-    for (i=0; i< n-1; i++) {
-        for (j=i+1; j<n; j++) {
+
+    cout << "\n===== DANH SACH DU AN =====\n";
+
+    for (int i = 0; i < n; i++) {
+        cout << "\nDu an thu " << i + 1;
+        ds[i].xuat();
+    }
+}
+
+// Sap xep ngan sach giam dan 
+void sapxepngansachgiamdan(Duan ds[], int n) {
+    if (n == 0) {
+        cout << "Danh sach rong! Khong the sap xep.\n";
+        return;
+    }
+
+    Duan temp;
+
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = i + 1; j < n; j++) {
             if (ds[i].getNgansach() < ds[j].getNgansach()) {
                 temp = ds[i];
                 ds[i] = ds[j];
@@ -89,76 +152,136 @@ void sapxepngansachgiamdan(Duan ds[], int n) {
             }
         }
     }
-    cout << "Danh sach da sap xep theo ngan sach giam dan:\n";
-    for (int i = 0; i < n; i++) {
-        ds[i].xuat();
-    }
+
+    cout << "\nDa sap xep theo ngan sach giam dan!\n";
+    hienThi(ds, n);
 }
 
+// Tim kiem theo ma
 void timkiemtheoma(Duan ds[], int n) {
-    int i;
-    if (n <= 0) {
-        cout << "Danh sach rong! Khong the tim kiem ma du an";
+    if (n == 0) {
+        cout << "Danh sach rong! Khong the tim kiem.\n";
         return;
     }
+
     string macantim;
-    cout << "Nhap ma du an can tim: ";	getline(cin >> ws, macantim);
+
+    cout << "Nhap ma du an can tim: ";
+    getline(cin, macantim);
+
     bool timthay = false;
-    string malower = tolowerstring(macantim);
-    for (i = 0; i < n; i++) {
-        if (tolowerstring(ds[i].getMaduan()) == malower) {
-            cout << "\nTHONG TIN DU AN TIM THAY THEO MA\n";
+
+    for (int i = 0; i < n; i++) {
+        if (tolowerstring(ds[i].getMaduan()) ==
+            tolowerstring(macantim)) {
+            cout << "\nTim thay du an:\n";
             ds[i].xuat();
             timthay = true;
             break;
         }
     }
+
     if (!timthay) {
         cout << "Khong tim thay du an co ma: "
              << macantim << endl;
     }
 }
 
+// Tim kiem theo ten 
 void timkiemtheoten(Duan ds[], int n) {
-
-    int i;
-
-    if (n<=0) {
-        cout << "Danh sach rong! Khong the tim kiem ten du an";
+    if (n == 0) {
+        cout << "Danh sach rong! Khong the tim kiem.\n";
         return;
     }
+
     string tencantim;
-    cout << "Nhap ten du an can tim: ";	getline(cin >> ws, tencantim);
+
+    cout << "Nhap ten du an can tim: ";
+    getline(cin, tencantim);
+
     bool timthay = false;
-    string tenlower = tolowerstring(tencantim);
-    for (i=0; i<n; i++) {
-        if (tolowerstring(ds[i].getTenduan()).find(tenlower)!= string::npos) {
+
+    for (int i = 0; i < n; i++) {
+        if (tolowerstring(ds[i].getTenduan()).find(
+            tolowerstring(tencantim)) != string::npos) {
+
             if (!timthay) {
-                cout << "\nTHONG TIN DU AN TIM THAY THEO TEN:\n";
+                cout << "\nCAC DU AN TIM THAY:\n";
                 timthay = true;
             }
+
             ds[i].xuat();
         }
     }
+
     if (!timthay) {
-        cout << "Khong tim thay du an co ten: "<< tencantim << endl;
+        cout << "Khong tim thay du an co ten: "
+             << tencantim << endl;
     }
 }
 
+// Menu Chuong trinh 
+void menu() {
+    cout << "\n========== QUAN LY DU AN PHAN MEM ==========\n";
+    cout << "1. Nhap danh sach du an\n";
+    cout << "2. Hien thi danh sach du an\n";
+    cout << "3. Sap xep theo ngan sach giam dan\n";
+    cout << "4. Tim kiem theo ma du an\n";
+    cout << "5. Tim kiem theo ten du an\n";
+    cout << "0. Thoat chuong trinh\n";
+    cout << "============================================\n";
+    cout << "Nhap lua chon cua ban: ";
+}
+
+// Ham main
 int main() {
     Duan ds[100];
-    int n;
-    cout << "Nhap so luong du an: ";
-    cin >> n;
-    for (int i = 0; i < n; i++) {
-        cout << "\n===== DU AN THU " << i + 1 << " =====\n";
-        ds[i].nhap();
-    }
-    cout << "\n\n===== DANH SACH DU AN =====\n";
-    for (int i = 0; i < n; i++) {
-        ds[i].xuat();
-    }
-    cout << "\n\n===== SAP XEP =====\n";
-    sapxepngansachgiamdan(ds, n);
+    int n = 0;
+    int chon;
+
+    do {
+        menu();
+
+        if (!(cin >> chon)) {
+            cout << "Lua chon khong hop le!\n";
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            continue;
+        }
+
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+        switch (chon) {
+            case 1:
+                nhapDanhSach(ds, n);
+                break;
+
+            case 2:
+                hienThi(ds, n);
+                break;
+
+            case 3:
+                sapxepngansachgiamdan(ds, n);
+                break;
+
+            case 4:
+                timkiemtheoma(ds, n);
+                break;
+
+            case 5:
+                timkiemtheoten(ds, n);
+                break;
+
+            case 0:
+                cout << "Da thoat chuong trinh!\n";
+                break;
+
+            default:
+                cout << "Lua chon khong hop le! Vui long chon lai.\n";
+        }
+
+    } while (chon != 0);
+
     return 0;
 }
+
